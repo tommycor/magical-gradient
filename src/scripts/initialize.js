@@ -1,14 +1,5 @@
-import Scene from './components/Scene'
+import creator 	from './colorz/utils/creator';
 
-window.onload = function() {
+import Scene 	from './components/Scene';
 
-	var items = document.querySelectorAll('.js-gazoline');
-	var exp = new Array();
-
-	if( items == void 0 || items.length == 0 ) { return; }
-
-	for( let i = 0 ; i < items.length ; i++ ) {
-		exp.push( new Scene( items[i] ) );
-	}
-
-}
+window.scenes 	= creator( '.js-scene', Scene );
