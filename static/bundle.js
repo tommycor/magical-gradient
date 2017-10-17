@@ -44794,7 +44794,8 @@ module.exports = (function (_Component) {
 						this.renderer.setSize(this.el.offsetWidth, this.el.offsetHeight);
 
 						this.uniforms = {
-								uResolution: { type: 'v2', value: new THREE.Vector2(this.width, this.height) }
+								uResolution: { type: 'v2', value: new THREE.Vector2(this.width, this.height) },
+								uTime: { type: 'f', value: 0 }
 						};
 
 						this.geometry = new THREE.PlaneGeometry(150, 150, 1);
@@ -44802,11 +44803,7 @@ module.exports = (function (_Component) {
 								uniforms: this.uniforms,
 								transparent: false,
 								vertexShader: require('../shaders/base.vertex.glsl'),
-								fragmentShader: require('../shaders/base.fragment.glsl')
-						});
-
-						this.material = new THREE.MeshBasicMaterial({
-								color: 'red'
+								fragmentShader: require('../shaders/gradient.fragment.glsl')
 						});
 
 						this.plane = new THREE.Mesh(this.geometry, this.material);
@@ -44831,7 +44828,7 @@ module.exports = (function (_Component) {
 						this.offset = (0, _colorzUtilsGetAbsoluteOffset2['default'])(this.el);
 
 						// https://stackoverflow.com/questions/14614252/how-to-fit-camera-to-object
-						// let fov = 2 * Math.atan( this.planeHeight / ( 2 * 100 ) ) * ( 180 / Math.PI );
+						var fov = 2 * Math.atan(this.planeHeight / (2 * 100)) * (180 / Math.PI);
 						this.renderer.setSize(this.width, this.height);
 						this.ratio = this.width / this.height;
 
@@ -44848,7 +44845,9 @@ module.exports = (function (_Component) {
 				}
 		}, {
 				key: 'onUpdate',
-				value: function onUpdate() {
+				value: function onUpdate(delta) {
+						this.material.uniforms.uTime.value += delta * .001;
+
 						this.renderer.render(this.scene, this.camera);
 				}
 		}]);
@@ -44856,7 +44855,7 @@ module.exports = (function (_Component) {
 		return Scene;
 })(_colorzComponent2['default']);
 
-},{"../colorz/Component":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\Component.js","../colorz/utils/device":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\utils\\device.js","../colorz/utils/getAbsoluteOffset":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\utils\\getAbsoluteOffset.js","../shaders/base.fragment.glsl":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\base.fragment.glsl","../shaders/base.vertex.glsl":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\base.vertex.glsl","three":"D:\\Documents\\git\\magical-gradient\\node_modules\\three\\build\\three.js"}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\initialize.js":[function(require,module,exports){
+},{"../colorz/Component":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\Component.js","../colorz/utils/device":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\utils\\device.js","../colorz/utils/getAbsoluteOffset":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\utils\\getAbsoluteOffset.js","../shaders/base.vertex.glsl":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\base.vertex.glsl","../shaders/gradient.fragment.glsl":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\gradient.fragment.glsl","three":"D:\\Documents\\git\\magical-gradient\\node_modules\\three\\build\\three.js"}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\initialize.js":[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -44871,11 +44870,11 @@ var _componentsScene2 = _interopRequireDefault(_componentsScene);
 
 window.scenes = (0, _colorzUtilsCreator2['default'])('.js-scene', _componentsScene2['default']);
 
-},{"./colorz/utils/creator":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\utils\\creator.js","./components/Scene":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\components\\Scene.js"}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\base.fragment.glsl":[function(require,module,exports){
-module.exports = "\r\nuniform vec2 uResolution;\r\nuniform sampler2D uImage;\r\nuniform sampler2D uDistortionMap;\r\n\r\nvoid main( void ) {\r\n\tvec2 uv  = gl_FragCoord.xy/uResolution;\r\n\r\n\tgl_FragColor = vec4( 1., .5, .5, 1. );\r\n}";
-
-},{}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\base.vertex.glsl":[function(require,module,exports){
+},{"./colorz/utils/creator":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\utils\\creator.js","./components/Scene":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\components\\Scene.js"}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\base.vertex.glsl":[function(require,module,exports){
 module.exports = "\r\nuniform vec2 uResolution;\r\nuniform sampler2D uImage;\r\nuniform sampler2D uDistortionMap;\r\n\r\nvoid main(void) {\r\n\tvec4 mvPosition = modelViewMatrix * vec4( position, 1. );\r\n\r\n    gl_Position = projectionMatrix * mvPosition;\r\n}";
+
+},{}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\gradient.fragment.glsl":[function(require,module,exports){
+module.exports = "\r\nuniform vec2 uResolution;\r\nuniform float uTime;\r\n\r\nvec3 gradients[4];\r\nvec3 currentGradient[4];\r\nvec2 uv;\r\nfloat fractal;\r\nvec3 rgb;\r\nfloat currentIndex;\r\n\r\nvec3 getGradient(int id) {\r\n    for (int i = 0 ; i < 4 ; i++ ) {\r\n        if (i == id) return gradients[i];\r\n    }\r\n}\r\n\r\nvoid main( void ) {\r\n\tuv   = gl_FragCoord.xy/uResolution;\r\n\r\n\tcurrentIndex = floor( uTime );\r\n\tfractal = fract( uTime );\r\n\r\n\tgradients[0]\t= vec3( .70, .93, .70 );   // .0\r\n\tgradients[1]\t= vec3(\t.68, .89, .97 );   // .33\r\n\tgradients[2]\t= vec3( .95, .82, .91 );   // .66\r\n\tgradients[3]\t= vec3( .94, .71, .81 );   // 1.\r\n\r\n\tcurrentGradient[0] = mix( getGradient( int( mod( 0. + currentIndex, 4. ) ) ), getGradient( int( mod( 1. + currentIndex, 4. ) ) ), fractal );\r\n\tcurrentGradient[1] = mix( getGradient( int( mod( 1. + currentIndex, 4. ) ) ), getGradient( int( mod( 2. + currentIndex, 4. ) ) ), fractal );\r\n\tcurrentGradient[2] = mix( getGradient( int( mod( 2. + currentIndex, 4. ) ) ), getGradient( int( mod( 3. + currentIndex, 4. ) ) ), fractal );\r\n\tcurrentGradient[3] = mix( getGradient( int( mod( 3. + currentIndex, 4. ) ) ), getGradient( int( mod( 0. + currentIndex, 4. ) ) ), fractal );\r\n\r\n\tif( uv.x >= .0 && uv.x < .25 ) {\r\n\t\trgb = vec3( mix( currentGradient[0], currentGradient[1], uv.x * 4.) );\r\n\t}\r\n\telse if( uv.x >= .25 && uv.x < .5 ) {\r\n\t\trgb = vec3( mix( currentGradient[1], currentGradient[2], ( uv.x - .25 ) * 4.) );\r\n\t}\r\n\telse if( uv.x >= .5 && uv.x < .75 ) {\r\n\t\trgb = vec3( mix( currentGradient[2], currentGradient[3], ( uv.x - .5 ) * 4.) );\r\n\t}\r\n\telse if( uv.x >= .75 ) {\r\n\t\trgb = vec3( mix( currentGradient[3], currentGradient[0], ( uv.x - .75 ) * 4.) );\r\n\t}\r\n\r\n\tgl_FragColor = vec4( rgb, 1. );\r\n}";
 
 },{}]},{},["D:\\Documents\\git\\magical-gradient\\src\\scripts\\initialize.js"])
 

@@ -27,7 +27,8 @@ module.exports = class Scene extends Component {
 		this.renderer.setSize(this.el.offsetWidth, this.el.offsetHeight);
 
 		this.uniforms = {
-			uResolution:    { type: 'v2', value: new THREE.Vector2( this.width, this.height ) }
+			uResolution:    { type: 'v2', 	value: new THREE.Vector2( this.width, this.height ) },
+			uTime:    		{ type: 'f', 	value: 0 }
 		};
 
 		this.geometry = new THREE.PlaneGeometry( 150, 150, 1 );
@@ -35,12 +36,8 @@ module.exports = class Scene extends Component {
 			uniforms: this.uniforms,
 			transparent: false,
 			vertexShader: require('../shaders/base.vertex.glsl'),
-			fragmentShader: require('../shaders/base.fragment.glsl')
+			fragmentShader: require('../shaders/gradient.fragment.glsl')
 		} );
-
-		this.material = new THREE.MeshBasicMaterial({
-			color: 'red'
-		})
 
 		this.plane    = new THREE.Mesh( this.geometry, this.material );
 		this.scene.add( this.plane );
@@ -63,7 +60,7 @@ module.exports = class Scene extends Component {
 		this.offset 	= getAbsoluteOffset( this.el );
 
 		// https://stackoverflow.com/questions/14614252/how-to-fit-camera-to-object
-		// let fov = 2 * Math.atan( this.planeHeight / ( 2 * 100 ) ) * ( 180 / Math.PI );
+		let fov = 2 * Math.atan( this.planeHeight / ( 2 * 100 ) ) * ( 180 / Math.PI );
 		this.renderer.setSize(this.width, this.height);
 		this.ratio = this.width / this.height;
 
@@ -78,7 +75,9 @@ module.exports = class Scene extends Component {
 		this.mousePos.y 		= event.clientY - ( this.offset.top - device.scroll.top );
 	}
 
-	onUpdate() {
+	onUpdate( delta ) {
+		this.material.uniforms.uTime.value += delta * .001;
+
 		this.renderer.render(this.scene, this.camera);
 	}
 }
