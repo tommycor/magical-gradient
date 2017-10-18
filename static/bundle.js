@@ -44729,7 +44729,189 @@ function getAbsoluteOffset(element) {
 
 module.exports = getAbsoluteOffset;
 
-},{}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\components\\Scene.js":[function(require,module,exports){
+},{}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\components\\Gradient.js":[function(require,module,exports){
+'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _three = require("three");
+
+var THREE = _interopRequireWildcard(_three);
+
+var _colorzComponent = require('../colorz/Component');
+
+var _colorzComponent2 = _interopRequireDefault(_colorzComponent);
+
+module.exports = (function (_Component) {
+	_inherits(Gradient, _Component);
+
+	function Gradient() {
+		_classCallCheck(this, Gradient);
+
+		_get(Object.getPrototypeOf(Gradient.prototype), 'constructor', this).apply(this, arguments);
+	}
+
+	_createClass(Gradient, [{
+		key: 'onInit',
+		value: function onInit() {
+			this.uniforms = {
+				uResolution: { type: 'v2', value: new THREE.Vector2(0, 0) },
+				uTime: { type: 'f', value: 0 }
+			};
+
+			this.geometry = new THREE.PlaneGeometry(150, 150, 1);
+			this.material = new THREE.ShaderMaterial({
+				uniforms: this.uniforms,
+				transparent: false,
+				vertexShader: require('../shaders/base.vertex.glsl'),
+				fragmentShader: require('../shaders/gradient.fragment.glsl')
+			});
+
+			this.mesh = new THREE.Mesh(this.geometry, this.material);
+		}
+	}, {
+		key: 'onReady',
+		value: function onReady() {
+			this.onResize();
+		}
+	}, {
+		key: 'onResize',
+		value: function onResize() {
+			this.uniforms.uResolution.value = new THREE.Vector2(this.width, this.height);
+		}
+	}, {
+		key: 'onUpdate',
+		value: function onUpdate(delta) {
+			this.material.uniforms.uTime.value += delta * .001;
+		}
+	}]);
+
+	return Gradient;
+})(_colorzComponent2['default']);
+
+},{"../colorz/Component":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\Component.js","../shaders/base.vertex.glsl":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\base.vertex.glsl","../shaders/gradient.fragment.glsl":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\gradient.fragment.glsl","three":"D:\\Documents\\git\\magical-gradient\\node_modules\\three\\build\\three.js"}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\components\\RandomPlane.js":[function(require,module,exports){
+'use strict';
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _three = require("three");
+
+var THREE = _interopRequireWildcard(_three);
+
+var _colorzComponent = require('../colorz/Component');
+
+var _colorzComponent2 = _interopRequireDefault(_colorzComponent);
+
+var _colorzUtilsDevice = require('../colorz/utils/device');
+
+var _colorzUtilsDevice2 = _interopRequireDefault(_colorzUtilsDevice);
+
+module.exports = (function (_Component) {
+	_inherits(RandomPlane, _Component);
+
+	function RandomPlane() {
+		_classCallCheck(this, RandomPlane);
+
+		_get(Object.getPrototypeOf(RandomPlane.prototype), 'constructor', this).apply(this, arguments);
+	}
+
+	_createClass(RandomPlane, [{
+		key: 'onInit',
+		value: function onInit() {
+			this.uniforms = {
+				uResolution: { type: 'v2', value: new THREE.Vector2(0, 0) },
+				uTime: { type: 'f', value: 0 }
+			};
+
+			this.geometry = this.createGeometry(100, 1500, 100, 50);
+			this.attributes = this.createAttributes();
+			this.material = new THREE.ShaderMaterial({
+				uniforms: this.uniforms,
+				attributes: this.attributes,
+				transparent: true,
+				vertexShader: require('../shaders/random.vertex.glsl'),
+				fragmentShader: require('../shaders/random.fragment.glsl'),
+				vertexColors: THREE.FaceColors,
+				transparent: true
+			});
+
+			this.mesh = new THREE.Mesh(this.geometry, this.material);
+		}
+	}, {
+		key: 'onReady',
+		value: function onReady() {}
+	}, {
+		key: 'onResize',
+		value: function onResize() {
+			// this.uniforms.uResolution.value = new THREE.Vector2( device.width, device.height );
+		}
+	}, {
+		key: 'onUpdate',
+		value: function onUpdate(delta) {
+			// this.material.uniforms.uTime.value += delta * .001;
+		}
+	}, {
+		key: 'createGeometry',
+		value: function createGeometry() {
+			var geometry = new THREE.PlaneGeometry(100, 100, 50, 50);
+
+			for (var i = 0; i < geometry.vertices.length; i++) {
+				var vertex = geometry.vertices[i];
+
+				vertex.x += Math.random() * 1.5;
+				vertex.y += Math.random() * 2;
+				vertex.z += Math.random() * 1.5;
+			}
+
+			geometry.computeVertexNormals();
+
+			for (var i = 0; i < geometry.faces.length; i++) {
+				var face = geometry.faces[i];
+
+				face.color.setRGB(face.vertexNormals[0].x, face.vertexNormals[0].y, face.vertexNormals[0].z);
+			}
+
+			return geometry;
+		}
+	}, {
+		key: 'createAttributes',
+		value: function createAttributes() {
+			var attributes = new Array();
+
+			for (var i = 0; i < this.geometry.vertices.length; i++) {
+				attributes.push(Math.random() < .5 ? 0 : 1);
+			}
+
+			return {
+				aVisible: { type: 'f', value: new Array() }
+			};
+		}
+	}]);
+
+	return RandomPlane;
+})(_colorzComponent2['default']);
+
+},{"../colorz/Component":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\Component.js","../colorz/utils/device":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\utils\\device.js","../shaders/random.fragment.glsl":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\random.fragment.glsl","../shaders/random.vertex.glsl":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\random.vertex.glsl","three":"D:\\Documents\\git\\magical-gradient\\node_modules\\three\\build\\three.js"}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\components\\Scene.js":[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -44759,6 +44941,18 @@ var _colorzUtilsDevice2 = _interopRequireDefault(_colorzUtilsDevice);
 var _colorzUtilsGetAbsoluteOffset = require('../colorz/utils/getAbsoluteOffset');
 
 var _colorzUtilsGetAbsoluteOffset2 = _interopRequireDefault(_colorzUtilsGetAbsoluteOffset);
+
+var _utilsGetIntersectionMouse = require('../utils/getIntersectionMouse');
+
+var _utilsGetIntersectionMouse2 = _interopRequireDefault(_utilsGetIntersectionMouse);
+
+var _Gradient = require('./Gradient');
+
+var _Gradient2 = _interopRequireDefault(_Gradient);
+
+var _RandomPlane = require('./RandomPlane');
+
+var _RandomPlane2 = _interopRequireDefault(_RandomPlane);
 
 module.exports = (function (_Component) {
 		_inherits(Scene, _Component);
@@ -44793,21 +44987,11 @@ module.exports = (function (_Component) {
 						this.renderer.setClearColor(0x000000);
 						this.renderer.setSize(this.el.offsetWidth, this.el.offsetHeight);
 
-						this.uniforms = {
-								uResolution: { type: 'v2', value: new THREE.Vector2(this.width, this.height) },
-								uTime: { type: 'f', value: 0 }
-						};
+						this.gradient = new _Gradient2['default']();
+						this.scene.add(this.gradient.mesh);
 
-						this.geometry = new THREE.PlaneGeometry(150, 150, 1);
-						this.material = new THREE.ShaderMaterial({
-								uniforms: this.uniforms,
-								transparent: false,
-								vertexShader: require('../shaders/base.vertex.glsl'),
-								fragmentShader: require('../shaders/gradient.fragment.glsl')
-						});
-
-						this.plane = new THREE.Mesh(this.geometry, this.material);
-						this.scene.add(this.plane);
+						this.randomPlane = new _RandomPlane2['default']();
+						this.scene.add(this.randomPlane.mesh);
 
 						this.axisHelper = new THREE.AxisHelper(5);
 						this.scene.add(this.axisHelper);
@@ -44823,31 +45007,32 @@ module.exports = (function (_Component) {
 		}, {
 				key: 'onResize',
 				value: function onResize() {
-						this.width = this.el.offsetWidth;
-						this.height = this.el.offsetHeight;
+						this.width = _colorzUtilsDevice2['default'].width;
+						this.height = _colorzUtilsDevice2['default'].height;
 						this.offset = (0, _colorzUtilsGetAbsoluteOffset2['default'])(this.el);
 
 						// https://stackoverflow.com/questions/14614252/how-to-fit-camera-to-object
-						var fov = 2 * Math.atan(this.planeHeight / (2 * 100)) * (180 / Math.PI);
+						var fov = 2 * Math.atan(this.height / (2 * 100)) * (180 / Math.PI);
+
 						this.renderer.setSize(this.width, this.height);
 						this.ratio = this.width / this.height;
 
 						this.camera.aspect = this.ratio;
 						this.camera.updateProjectionMatrix();
-
-						this.uniforms.uResolution.value = new THREE.Vector2(this.width, this.height);
 				}
 		}, {
 				key: 'onPointermove',
 				value: function onPointermove(event) {
 						this.mousePos.x = event.clientX;
 						this.mousePos.y = event.clientY - (this.offset.top - _colorzUtilsDevice2['default'].scroll.top);
+
+						var intersection = (0, _utilsGetIntersectionMouse2['default'])(this.mousePos.x, this.mousePos.y, this.randomPlane.mesh, this.camera);
+
+						console.log(intersection);
 				}
 		}, {
 				key: 'onUpdate',
 				value: function onUpdate(delta) {
-						this.material.uniforms.uTime.value += delta * .001;
-
 						this.renderer.render(this.scene, this.camera);
 				}
 		}]);
@@ -44855,7 +45040,7 @@ module.exports = (function (_Component) {
 		return Scene;
 })(_colorzComponent2['default']);
 
-},{"../colorz/Component":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\Component.js","../colorz/utils/device":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\utils\\device.js","../colorz/utils/getAbsoluteOffset":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\utils\\getAbsoluteOffset.js","../shaders/base.vertex.glsl":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\base.vertex.glsl","../shaders/gradient.fragment.glsl":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\gradient.fragment.glsl","three":"D:\\Documents\\git\\magical-gradient\\node_modules\\three\\build\\three.js"}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\initialize.js":[function(require,module,exports){
+},{"../colorz/Component":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\Component.js","../colorz/utils/device":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\utils\\device.js","../colorz/utils/getAbsoluteOffset":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\utils\\getAbsoluteOffset.js","../utils/getIntersectionMouse":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\utils\\getIntersectionMouse.js","./Gradient":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\components\\Gradient.js","./RandomPlane":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\components\\RandomPlane.js","three":"D:\\Documents\\git\\magical-gradient\\node_modules\\three\\build\\three.js"}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\initialize.js":[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -44874,8 +45059,44 @@ window.scenes = (0, _colorzUtilsCreator2['default'])('.js-scene', _componentsSce
 module.exports = "\r\nuniform vec2 uResolution;\r\nuniform sampler2D uImage;\r\nuniform sampler2D uDistortionMap;\r\n\r\nvoid main(void) {\r\n\tvec4 mvPosition = modelViewMatrix * vec4( position, 1. );\r\n\r\n    gl_Position = projectionMatrix * mvPosition;\r\n}";
 
 },{}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\gradient.fragment.glsl":[function(require,module,exports){
-module.exports = "\r\nuniform vec2 uResolution;\r\nuniform float uTime;\r\n\r\nvec3 gradients[4];\r\nvec3 currentGradient[4];\r\nvec2 uv;\r\nfloat fractal;\r\nvec3 rgb;\r\nfloat currentIndex;\r\n\r\nvec3 getGradient(int id) {\r\n    for (int i = 0 ; i < 4 ; i++ ) {\r\n        if (i == id) return gradients[i];\r\n    }\r\n}\r\n\r\nvoid main( void ) {\r\n\tuv   = gl_FragCoord.xy/uResolution;\r\n\r\n\tcurrentIndex = floor( uTime );\r\n\tfractal = fract( uTime );\r\n\r\n\tgradients[0]\t= vec3( .70, .93, .70 );   // .0\r\n\tgradients[1]\t= vec3(\t.68, .89, .97 );   // .33\r\n\tgradients[2]\t= vec3( .95, .82, .91 );   // .66\r\n\tgradients[3]\t= vec3( .94, .71, .81 );   // 1.\r\n\r\n\tcurrentGradient[0] = mix( getGradient( int( mod( 0. + currentIndex, 4. ) ) ), getGradient( int( mod( 1. + currentIndex, 4. ) ) ), fractal );\r\n\tcurrentGradient[1] = mix( getGradient( int( mod( 1. + currentIndex, 4. ) ) ), getGradient( int( mod( 2. + currentIndex, 4. ) ) ), fractal );\r\n\tcurrentGradient[2] = mix( getGradient( int( mod( 2. + currentIndex, 4. ) ) ), getGradient( int( mod( 3. + currentIndex, 4. ) ) ), fractal );\r\n\tcurrentGradient[3] = mix( getGradient( int( mod( 3. + currentIndex, 4. ) ) ), getGradient( int( mod( 0. + currentIndex, 4. ) ) ), fractal );\r\n\r\n\tif( uv.x >= .0 && uv.x < .25 ) {\r\n\t\trgb = vec3( mix( currentGradient[0], currentGradient[1], uv.x * 4.) );\r\n\t}\r\n\telse if( uv.x >= .25 && uv.x < .5 ) {\r\n\t\trgb = vec3( mix( currentGradient[1], currentGradient[2], ( uv.x - .25 ) * 4.) );\r\n\t}\r\n\telse if( uv.x >= .5 && uv.x < .75 ) {\r\n\t\trgb = vec3( mix( currentGradient[2], currentGradient[3], ( uv.x - .5 ) * 4.) );\r\n\t}\r\n\telse if( uv.x >= .75 ) {\r\n\t\trgb = vec3( mix( currentGradient[3], currentGradient[0], ( uv.x - .75 ) * 4.) );\r\n\t}\r\n\r\n\tgl_FragColor = vec4( rgb, 1. );\r\n}";
+module.exports = "#define nbr 4\r\n\r\nuniform vec2 uResolution;\r\nuniform float uTime;\r\n\r\n\r\nvec3 gradients[nbr];\r\nvec3 currentGradient[nbr];\r\nvec2 uv;\r\nfloat fractal;\r\nvec3 rgb;\r\nfloat currentIndex;\r\nfloat step;\r\n\r\nvec3 getGradient(int id) {\r\n    for (int i = 0 ; i < 4 ; i++ ) {\r\n        if (i == id) return gradients[i];\r\n    }\r\n}\r\n\r\nvoid main( void ) {\r\n\tuv   = gl_FragCoord.xy/uResolution;\r\n\r\n\tstep = 1. / float( nbr );\r\n\t\r\n\tcurrentIndex = floor( uTime );\r\n\tfractal = fract( uTime );\r\n\r\n\tgradients[0]\t= vec3( .70, .93, .70 );   // .0\r\n\tgradients[1]\t= vec3(\t.68, .89, .97 );   // .33\r\n\tgradients[2]\t= vec3( .95, .82, .91 );   // .66\r\n\tgradients[3]\t= vec3( .94, .71, .81 );   // 1.\r\n\r\n\tcurrentGradient[0] = mix( getGradient( int( mod( 0. + currentIndex, 4. ) ) ), getGradient( int( mod( 1. + currentIndex, 4. ) ) ), fractal );\r\n\tcurrentGradient[1] = mix( getGradient( int( mod( 1. + currentIndex, 4. ) ) ), getGradient( int( mod( 2. + currentIndex, 4. ) ) ), fractal );\r\n\tcurrentGradient[2] = mix( getGradient( int( mod( 2. + currentIndex, 4. ) ) ), getGradient( int( mod( 3. + currentIndex, 4. ) ) ), fractal );\r\n\tcurrentGradient[3] = mix( getGradient( int( mod( 3. + currentIndex, 4. ) ) ), getGradient( int( mod( 0. + currentIndex, 4. ) ) ), fractal );\r\n\r\n\tfor( int i = 0 ; i < nbr ; i++ ) {\r\n\t\tfloat currentStep = float(i) * step;\r\n\r\n\t\tif( uv.x >= currentStep && uv.x < step * ( float( i + 1 ) ) ) {\r\n\t\t\tif( i == nbr - 1 ) {\r\n\t\t\t\trgb = vec3( mix( currentGradient[ i ], currentGradient[ 0 ], (uv.x - currentStep) * float( nbr ) ) );\r\n\t\t\t}\r\n\t\t\telse {\r\n\t\t\t\trgb = vec3( mix( currentGradient[ i ], currentGradient[ i+1 ], (uv.x - currentStep) * float( nbr ) ) );\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n\t// uv.x = fract( uv.x + uTime * .2 );\r\n\r\n\t// for( int i = 0 ; i < nbr ; i++ ) {\r\n\t// \tfloat currentStep = float(i) * step;\r\n\r\n\t// \tif( uv.x >= currentStep && uv.x < step * ( float( i + 1 ) ) ) {\r\n\t// \t\tif( i == nbr - 1 ) {\r\n\t// \t\t\trgb = vec3( mix( gradients[ i ], gradients[ 0 ], (uv.x - currentStep) * float( nbr ) ) );\r\n\t// \t\t}\r\n\t// \t\telse {\r\n\t// \t\t\trgb = vec3( mix( gradients[ i ], gradients[ i+1 ], (uv.x - currentStep) * float( nbr ) ) );\r\n\t// \t\t}\r\n\r\n\t// \t\tbreak;\r\n\t// \t}\r\n\t// }\r\n\r\n\tgl_FragColor = vec4( rgb, 1. );\r\n}";
 
-},{}]},{},["D:\\Documents\\git\\magical-gradient\\src\\scripts\\initialize.js"])
+},{}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\random.fragment.glsl":[function(require,module,exports){
+module.exports = "\r\nvarying vec3 vNormal;\r\nvarying vec3 vColor;\r\n\r\nvoid main( void ) {\r\n\t// float moy = ( vNormal.x + vNormal.y + vNormal.z ) / 3.;\r\n\tfloat moy = ( vColor.x + vColor.y + vColor.z ) / 3.;\r\n\tmoy -= .2;\r\n\r\n\tgl_FragColor = vec4( vec3( moy ) , 1. );\r\n}";
+
+},{}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\random.vertex.glsl":[function(require,module,exports){
+module.exports = "\r\n\r\nvarying vec3 vNormal;\r\nvarying vec3 vColor;\r\nvarying vec3 vVisible;\r\n\r\nvoid main(void) {\r\n\tvNormal = normal;\r\n\tvColor = color;\r\n\r\n\tvec4 mvPosition = modelViewMatrix * vec4( position, 1. );\r\n\r\n    gl_Position = projectionMatrix * mvPosition;\r\n}";
+
+},{}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\utils\\getIntersectionMouse.js":[function(require,module,exports){
+"use strict";
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj["default"] = obj; return newObj; } }
+
+var _three = require("three");
+
+var THREE = _interopRequireWildcard(_three);
+
+var _colorzUtilsDevice = require('../colorz/utils/device');
+
+var _colorzUtilsDevice2 = _interopRequireDefault(_colorzUtilsDevice);
+
+function getIntersectionMouse(x, y, mesh, camera) {
+
+    // On détecte la position de la souris
+    var vector = new THREE.Vector3(x / _colorzUtilsDevice2["default"].width * 2 - 1, -(y / _colorzUtilsDevice2["default"].height) * 2 + 1, 0.5);
+    vector.unproject(camera);
+    // On balance le raycaster en fonction de la souris
+    var raycaster = new THREE.Raycaster(camera.position, vector.sub(camera.position).normalize());
+    // On regarde les intersections entre le plan locate (invisible et au niveau des cubes) et le raycaster
+    var intersect = raycaster.intersectObject(mesh);
+
+    return intersect;
+}
+
+module.exports = getIntersectionMouse;
+
+},{"../colorz/utils/device":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\utils\\device.js","three":"D:\\Documents\\git\\magical-gradient\\node_modules\\three\\build\\three.js"}]},{},["D:\\Documents\\git\\magical-gradient\\src\\scripts\\initialize.js"])
 
 //# sourceMappingURL=bundle.js.map

@@ -4,6 +4,11 @@ import Component 			from '../colorz/Component';
 import device 				from '../colorz/utils/device';
 import getAbsoluteOffset 	from '../colorz/utils/getAbsoluteOffset';
 
+import getIntersectionMouse from '../utils/getIntersectionMouse';
+
+import Gradient 			from'./Gradient';
+import RandomPlane 			from'./RandomPlane';
+
 module.exports = class Scene extends Component {
 	onInit( el ) {
 		this.onPointermove 			= this.onPointermove.bind( this );
@@ -26,21 +31,11 @@ module.exports = class Scene extends Component {
 		this.renderer.setClearColor(0x000000);
 		this.renderer.setSize(this.el.offsetWidth, this.el.offsetHeight);
 
-		this.uniforms = {
-			uResolution:    { type: 'v2', 	value: new THREE.Vector2( this.width, this.height ) },
-			uTime:    		{ type: 'f', 	value: 0 }
-		};
+		this.gradient = new Gradient();
+		this.scene.add( this.gradient.mesh );
 
-		this.geometry = new THREE.PlaneGeometry( 150, 150, 1 );
-		this.material = new THREE.ShaderMaterial( {
-			uniforms: this.uniforms,
-			transparent: false,
-			vertexShader: require('../shaders/base.vertex.glsl'),
-			fragmentShader: require('../shaders/gradient.fragment.glsl')
-		} );
-
-		this.plane    = new THREE.Mesh( this.geometry, this.material );
-		this.scene.add( this.plane );
+		this.randomPlane = new RandomPlane();
+		this.scene.add( this.randomPlane.mesh );
 
 		this.axisHelper =  new THREE.AxisHelper( 5 );
 		this.scene.add( this.axisHelper );
@@ -55,29 +50,30 @@ module.exports = class Scene extends Component {
 	}
 
 	onResize() {
-		this.width 		= this.el.offsetWidth;
-		this.height 	= this.el.offsetHeight;
+		this.width 		= device.width;
+		this.height 	= device.height;
 		this.offset 	= getAbsoluteOffset( this.el );
 
 		// https://stackoverflow.com/questions/14614252/how-to-fit-camera-to-object
-		let fov = 2 * Math.atan( this.planeHeight / ( 2 * 100 ) ) * ( 180 / Math.PI );
+		let fov = 2 * Math.atan( this.height / ( 2 * 100 ) ) * ( 180 / Math.PI );
+
 		this.renderer.setSize(this.width, this.height);
 		this.ratio = this.width / this.height;
 
 		this.camera.aspect = this.ratio;
 		this.camera.updateProjectionMatrix();
-
-		this.uniforms.uResolution.value = new THREE.Vector2( this.width, this.height );
 	}
 
 	onPointermove( event ) {
 		this.mousePos.x 		= event.clientX;
 		this.mousePos.y 		= event.clientY - ( this.offset.top - device.scroll.top );
+
+		let intersection = getIntersectionMouse( this.mousePos.x, this.mousePos.y, this.randomPlane.mesh, this.camera );
+
+		console.log( intersection );
 	}
 
 	onUpdate( delta ) {
-		this.material.uniforms.uTime.value += delta * .001;
-
 		this.renderer.render(this.scene, this.camera);
 	}
 }

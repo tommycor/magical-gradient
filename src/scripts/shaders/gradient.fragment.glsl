@@ -1,13 +1,16 @@
+#define nbr 4
 
 uniform vec2 uResolution;
 uniform float uTime;
 
-vec3 gradients[4];
-vec3 currentGradient[4];
+
+vec3 gradients[nbr];
+vec3 currentGradient[nbr];
 vec2 uv;
 float fractal;
 vec3 rgb;
 float currentIndex;
+float step;
 
 vec3 getGradient(int id) {
     for (int i = 0 ; i < 4 ; i++ ) {
@@ -18,6 +21,8 @@ vec3 getGradient(int id) {
 void main( void ) {
 	uv   = gl_FragCoord.xy/uResolution;
 
+	step = 1. / float( nbr );
+	
 	currentIndex = floor( uTime );
 	fractal = fract( uTime );
 
@@ -31,18 +36,35 @@ void main( void ) {
 	currentGradient[2] = mix( getGradient( int( mod( 2. + currentIndex, 4. ) ) ), getGradient( int( mod( 3. + currentIndex, 4. ) ) ), fractal );
 	currentGradient[3] = mix( getGradient( int( mod( 3. + currentIndex, 4. ) ) ), getGradient( int( mod( 0. + currentIndex, 4. ) ) ), fractal );
 
-	if( uv.x >= .0 && uv.x < .25 ) {
-		rgb = vec3( mix( currentGradient[0], currentGradient[1], uv.x * 4.) );
+	for( int i = 0 ; i < nbr ; i++ ) {
+		float currentStep = float(i) * step;
+
+		if( uv.x >= currentStep && uv.x < step * ( float( i + 1 ) ) ) {
+			if( i == nbr - 1 ) {
+				rgb = vec3( mix( currentGradient[ i ], currentGradient[ 0 ], (uv.x - currentStep) * float( nbr ) ) );
+			}
+			else {
+				rgb = vec3( mix( currentGradient[ i ], currentGradient[ i+1 ], (uv.x - currentStep) * float( nbr ) ) );
+			}
+		}
 	}
-	else if( uv.x >= .25 && uv.x < .5 ) {
-		rgb = vec3( mix( currentGradient[1], currentGradient[2], ( uv.x - .25 ) * 4.) );
-	}
-	else if( uv.x >= .5 && uv.x < .75 ) {
-		rgb = vec3( mix( currentGradient[2], currentGradient[3], ( uv.x - .5 ) * 4.) );
-	}
-	else if( uv.x >= .75 ) {
-		rgb = vec3( mix( currentGradient[3], currentGradient[0], ( uv.x - .75 ) * 4.) );
-	}
+
+	// uv.x = fract( uv.x + uTime * .2 );
+
+	// for( int i = 0 ; i < nbr ; i++ ) {
+	// 	float currentStep = float(i) * step;
+
+	// 	if( uv.x >= currentStep && uv.x < step * ( float( i + 1 ) ) ) {
+	// 		if( i == nbr - 1 ) {
+	// 			rgb = vec3( mix( gradients[ i ], gradients[ 0 ], (uv.x - currentStep) * float( nbr ) ) );
+	// 		}
+	// 		else {
+	// 			rgb = vec3( mix( gradients[ i ], gradients[ i+1 ], (uv.x - currentStep) * float( nbr ) ) );
+	// 		}
+
+	// 		break;
+	// 	}
+	// }
 
 	gl_FragColor = vec4( rgb, 1. );
 }
