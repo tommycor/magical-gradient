@@ -2,7 +2,6 @@
 
 varying vec3 vNormal;
 varying vec3 vColor;
-varying vec3 vVisible;
 
 void main(void) {
 	vNormal = normal;

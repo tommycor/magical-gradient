@@ -49,22 +49,5 @@ void main( void ) {
 		}
 	}
 
-	// uv.x = fract( uv.x + uTime * .2 );
-
-	// for( int i = 0 ; i < nbr ; i++ ) {
-	// 	float currentStep = float(i) * step;
-
-	// 	if( uv.x >= currentStep && uv.x < step * ( float( i + 1 ) ) ) {
-	// 		if( i == nbr - 1 ) {
-	// 			rgb = vec3( mix( gradients[ i ], gradients[ 0 ], (uv.x - currentStep) * float( nbr ) ) );
-	// 		}
-	// 		else {
-	// 			rgb = vec3( mix( gradients[ i ], gradients[ i+1 ], (uv.x - currentStep) * float( nbr ) ) );
-	// 		}
-
-	// 		break;
-	// 	}
-	// }
-
 	gl_FragColor = vec4( rgb, 1. );
 }

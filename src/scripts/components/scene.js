@@ -69,8 +69,6 @@ module.exports = class Scene extends Component {
 		this.mousePos.y 		= event.clientY - ( this.offset.top - device.scroll.top );
 
 		let intersection = getIntersectionMouse( this.mousePos.x, this.mousePos.y, this.randomPlane.mesh, this.camera );
-
-		console.log( intersection );
 	}
 
 	onUpdate( delta ) {

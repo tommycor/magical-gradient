@@ -1,6 +1,7 @@
 import * as THREE 			from "three";
 
 import Component 			from '../colorz/Component';
+import device 				from '../colorz/utils/device';
 
 module.exports = class Gradient extends Component {
 	onInit() {
@@ -9,7 +10,7 @@ module.exports = class Gradient extends Component {
 			uTime:    		{ type: 'f', 	value: 0 }
 		};
 
-		this.geometry = new THREE.PlaneGeometry( 150, 150, 1 );
+		this.geometry = new THREE.PlaneGeometry( 100, 50, 1 );
 		this.material = new THREE.ShaderMaterial( {
 			uniforms: this.uniforms,
 			transparent: false,
@@ -25,7 +26,7 @@ module.exports = class Gradient extends Component {
 	}
 
 	onResize() {
-		this.uniforms.uResolution.value = new THREE.Vector2( this.width, this.height );
+		this.uniforms.uResolution.value = new THREE.Vector2( device.width, device.height );
 	}
 
 	onUpdate( delta ) {
