@@ -4,7 +4,6 @@ varying vec3 vNormal;
 varying vec3 vColor;
 
 void main(void) {
-	vNormal = normal;
 	vColor = color;
 
 	vec4 mvPosition = modelViewMatrix * vec4( position, 1. );

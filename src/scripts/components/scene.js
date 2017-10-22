@@ -55,12 +55,13 @@ module.exports = class Scene extends Component {
 		this.offset 	= getAbsoluteOffset( this.el );
 
 		// https://stackoverflow.com/questions/14614252/how-to-fit-camera-to-object
-		let fov = 2 * Math.atan( this.height / ( 2 * 100 ) ) * ( 180 / Math.PI );
+		let fov = 2 * Math.atan( 50 / ( 2 * 100 ) ) * ( 180 / Math.PI );
 
 		this.renderer.setSize(this.width, this.height);
 		this.ratio = this.width / this.height;
 
-		this.camera.aspect = this.ratio;
+		this.camera.aspect  = this.ratio;
+		this.camera.fov  	= fov;
 		this.camera.updateProjectionMatrix();
 	}
 
@@ -69,6 +70,13 @@ module.exports = class Scene extends Component {
 		this.mousePos.y 		= event.clientY - ( this.offset.top - device.scroll.top );
 
 		let intersection = getIntersectionMouse( this.mousePos.x, this.mousePos.y, this.randomPlane.mesh, this.camera );
+
+		if( !intersection.length ) { return; }
+
+		// intersection[0].face.color.setRGB( intersection[0].face.color.r, intersection[0].face.color.r, 0 );
+		intersection[0].face.color.setRGB( 1, 1, 0 );
+
+		this.randomPlane.geometry.elementsNeedUpdate = true;
 	}
 
 	onUpdate( delta ) {

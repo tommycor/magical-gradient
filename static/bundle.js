@@ -1,4 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/node_modules/three/build/three.js":[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"D:\\Documents\\git\\magical-gradient\\node_modules\\three\\build\\three.js":[function(require,module,exports){
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
 	typeof define === 'function' && define.amd ? define(['exports'], factory) :
@@ -44239,7 +44239,7 @@
 
 })));
 
-},{}],"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/Component.js":[function(require,module,exports){
+},{}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\Component.js":[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -44355,7 +44355,7 @@ module.exports = (function () {
 	return Component;
 })();
 
-},{"./lifeCycle/onReady":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/lifeCycle/onReady.js","./lifeCycle/onResize":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/lifeCycle/onResize.js","./lifeCycle/onScroll":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/lifeCycle/onScroll.js","./lifeCycle/onUpdate":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/lifeCycle/onUpdate.js"}],"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/lifeCycle/BaseLifeCycle.js":[function(require,module,exports){
+},{"./lifeCycle/onReady":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\lifeCycle\\onReady.js","./lifeCycle/onResize":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\lifeCycle\\onResize.js","./lifeCycle/onScroll":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\lifeCycle\\onScroll.js","./lifeCycle/onUpdate":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\lifeCycle\\onUpdate.js"}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\lifeCycle\\BaseLifeCycle.js":[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -44424,7 +44424,7 @@ module.exports = (function () {
 	return BaseLifeCycle;
 })();
 
-},{}],"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/lifeCycle/onReady.js":[function(require,module,exports){
+},{}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\lifeCycle\\onReady.js":[function(require,module,exports){
 'use strict';
 
 var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
@@ -44455,7 +44455,7 @@ var OnReady = (function (_BaseLifeCycle) {
 
 module.exports = new OnReady();
 
-},{"./BaseLifeCycle":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/lifeCycle/BaseLifeCycle.js"}],"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/lifeCycle/onResize.js":[function(require,module,exports){
+},{"./BaseLifeCycle":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\lifeCycle\\BaseLifeCycle.js"}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\lifeCycle\\onResize.js":[function(require,module,exports){
 'use strict';
 
 var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
@@ -44486,7 +44486,7 @@ var OnResize = (function (_BaseLifeCycle) {
 
 module.exports = new OnResize();
 
-},{"./BaseLifeCycle":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/lifeCycle/BaseLifeCycle.js"}],"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/lifeCycle/onScroll.js":[function(require,module,exports){
+},{"./BaseLifeCycle":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\lifeCycle\\BaseLifeCycle.js"}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\lifeCycle\\onScroll.js":[function(require,module,exports){
 'use strict';
 
 var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
@@ -44517,7 +44517,7 @@ var OnScroll = (function (_BaseLifeCycle) {
 
 module.exports = new OnScroll();
 
-},{"./BaseLifeCycle":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/lifeCycle/BaseLifeCycle.js"}],"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/lifeCycle/onUpdate.js":[function(require,module,exports){
+},{"./BaseLifeCycle":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\lifeCycle\\BaseLifeCycle.js"}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\lifeCycle\\onUpdate.js":[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -44570,7 +44570,7 @@ var OnUpdate = (function (_BaseLifeCycle) {
 
 module.exports = new OnUpdate();
 
-},{"./BaseLifeCycle":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/lifeCycle/BaseLifeCycle.js"}],"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/utils/creator.js":[function(require,module,exports){
+},{"./BaseLifeCycle":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\lifeCycle\\BaseLifeCycle.js"}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\utils\\creator.js":[function(require,module,exports){
 /**
  *
  * Initialize Class from selector
@@ -44618,7 +44618,7 @@ function creator(selector, Class, args, ctx) {
 
 module.exports = creator;
 
-},{}],"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/utils/device.js":[function(require,module,exports){
+},{}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\utils\\device.js":[function(require,module,exports){
 /**
  *
  * Get informations about client device
@@ -44702,7 +44702,7 @@ var Device = (function (_Component) {
 
 module.exports = new Device();
 
-},{"../Component":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/Component.js"}],"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/utils/getAbsoluteOffset.js":[function(require,module,exports){
+},{"../Component":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\Component.js"}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\utils\\getAbsoluteOffset.js":[function(require,module,exports){
 /**
  *
  * Get position of an element in the whole page
@@ -44729,7 +44729,7 @@ function getAbsoluteOffset(element) {
 
 module.exports = getAbsoluteOffset;
 
-},{}],"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/components/Gradient.js":[function(require,module,exports){
+},{}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\components\\Gradient.js":[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -44803,7 +44803,7 @@ module.exports = (function (_Component) {
 	return Gradient;
 })(_colorzComponent2['default']);
 
-},{"../colorz/Component":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/Component.js","../colorz/utils/device":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/utils/device.js","../shaders/base.vertex.glsl":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/shaders/base.vertex.glsl","../shaders/gradient.fragment.glsl":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/shaders/gradient.fragment.glsl","three":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/node_modules/three/build/three.js"}],"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/components/RandomPlane.js":[function(require,module,exports){
+},{"../colorz/Component":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\Component.js","../colorz/utils/device":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\utils\\device.js","../shaders/base.vertex.glsl":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\base.vertex.glsl","../shaders/gradient.fragment.glsl":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\gradient.fragment.glsl","three":"D:\\Documents\\git\\magical-gradient\\node_modules\\three\\build\\three.js"}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\components\\RandomPlane.js":[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -44848,7 +44848,6 @@ module.exports = (function (_Component) {
 			};
 
 			this.geometry = this.createGeometry();
-			// this.attributes = this.createAttributes();
 			this.material = new THREE.ShaderMaterial({
 				uniforms: this.uniforms,
 				transparent: true,
@@ -44861,61 +44860,37 @@ module.exports = (function (_Component) {
 			this.mesh = new THREE.Mesh(this.geometry, this.material);
 		}
 	}, {
-		key: 'onReady',
-		value: function onReady() {}
-	}, {
-		key: 'onResize',
-		value: function onResize() {
-			// this.uniforms.uResolution.value = new THREE.Vector2( device.width, device.height );
-		}
-	}, {
-		key: 'onUpdate',
-		value: function onUpdate(delta) {
-			// this.material.uniforms.uTime.value += delta * .001;
-		}
-	}, {
 		key: 'createGeometry',
 		value: function createGeometry() {
-			// var geometry = new THREE.PlaneGeometry( 100, 50, 50, 50 );
-			var geometry = new THREE.PlaneBufferGeometry(100, 50, 50, 50);
+			var geometry = new THREE.PlaneGeometry(100, 50, 50, 30);
 
-			for (var i = 0; i < geometry.attributes.position.count; i += 3) {
-				geometry.attributes.position[i] += Math.random() * 1.5 - .75;
-				geometry.attributes.position[i + 1] += Math.random() * 2 - 1;
-				geometry.attributes.position[i + 2] += Math.random() * 1.5;
+			for (var i = 0; i < geometry.vertices.length; i++) {
+				var vertex = geometry.vertices[i];
+
+				vertex.x += Math.random() * 1.5 - .75;
+				vertex.y += Math.random() * 2 - 1;
+				vertex.z += Math.random() * 1.5;
 			}
 
-			geometry.attributes.position.needsUpdate = true;
 			geometry.computeVertexNormals();
-			console.log('geometry', geometry);
 
-			// for( let i = 0 ; i < geometry.faces.length ; i++ ) {
-			// 	let face = geometry.faces[i];
+			for (var i = 0; i < geometry.faces.length; i++) {
+				var face = geometry.faces[i];
 
-			// 	face.color.setRGB( face.vertexNormals[0].x, face.vertexNormals[0].y, face.vertexNormals[0].z );
-			// }
+				var moy = (face.vertexNormals[0].x + face.vertexNormals[0].y + face.vertexNormals[0].z) / 3;
+				moy -= .2;
+
+				face.color.setRGB(moy, moy, 1);
+			}
 
 			return geometry;
-		}
-	}, {
-		key: 'createAttributes',
-		value: function createAttributes() {
-			var attributes = new Array();
-
-			for (var i = 0; i < this.geometry.vertices.length; i++) {
-				attributes.push(Math.random() < .5 ? 0 : 1);
-			}
-
-			return {
-				aVisible: { type: 'f', value: new Array() }
-			};
 		}
 	}]);
 
 	return RandomPlane;
 })(_colorzComponent2['default']);
 
-},{"../colorz/Component":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/Component.js","../colorz/utils/device":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/utils/device.js","../shaders/random.fragment.glsl":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/shaders/random.fragment.glsl","../shaders/random.vertex.glsl":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/shaders/random.vertex.glsl","three":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/node_modules/three/build/three.js"}],"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/components/Scene.js":[function(require,module,exports){
+},{"../colorz/Component":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\Component.js","../colorz/utils/device":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\utils\\device.js","../shaders/random.fragment.glsl":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\random.fragment.glsl","../shaders/random.vertex.glsl":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\random.vertex.glsl","three":"D:\\Documents\\git\\magical-gradient\\node_modules\\three\\build\\three.js"}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\components\\Scene.js":[function(require,module,exports){
 'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -44959,90 +44934,100 @@ var _RandomPlane = require('./RandomPlane');
 var _RandomPlane2 = _interopRequireDefault(_RandomPlane);
 
 module.exports = (function (_Component) {
-	_inherits(Scene, _Component);
+		_inherits(Scene, _Component);
 
-	function Scene() {
-		_classCallCheck(this, Scene);
+		function Scene() {
+				_classCallCheck(this, Scene);
 
-		_get(Object.getPrototypeOf(Scene.prototype), 'constructor', this).apply(this, arguments);
-	}
-
-	_createClass(Scene, [{
-		key: 'onInit',
-		value: function onInit(el) {
-			this.onPointermove = this.onPointermove.bind(this);
-
-			this.el = el;
-			this.mousePos = new THREE.Vector2(0, 0);
+				_get(Object.getPrototypeOf(Scene.prototype), 'constructor', this).apply(this, arguments);
 		}
-	}, {
-		key: 'onReady',
-		value: function onReady() {
-			this.canvas = document.createElement('canvas');
-			this.context = this.canvas.getContext('2d');
 
-			this.scene = new THREE.Scene();
-			this.camera = new THREE.PerspectiveCamera(45, this.ratio, 10, 300);
-			this.camera.position.x = 0;
-			this.camera.position.y = 0;
-			this.camera.position.z = 100;
+		_createClass(Scene, [{
+				key: 'onInit',
+				value: function onInit(el) {
+						this.onPointermove = this.onPointermove.bind(this);
 
-			this.renderer = new THREE.WebGLRenderer();
-			this.renderer.setClearColor(0x000000);
-			this.renderer.setSize(this.el.offsetWidth, this.el.offsetHeight);
+						this.el = el;
+						this.mousePos = new THREE.Vector2(0, 0);
+				}
+		}, {
+				key: 'onReady',
+				value: function onReady() {
+						this.canvas = document.createElement('canvas');
+						this.context = this.canvas.getContext('2d');
 
-			this.gradient = new _Gradient2['default']();
-			this.scene.add(this.gradient.mesh);
+						this.scene = new THREE.Scene();
+						this.camera = new THREE.PerspectiveCamera(45, this.ratio, 10, 300);
+						this.camera.position.x = 0;
+						this.camera.position.y = 0;
+						this.camera.position.z = 100;
 
-			this.randomPlane = new _RandomPlane2['default']();
-			this.scene.add(this.randomPlane.mesh);
+						this.renderer = new THREE.WebGLRenderer();
+						this.renderer.setClearColor(0x000000);
+						this.renderer.setSize(this.el.offsetWidth, this.el.offsetHeight);
 
-			this.axisHelper = new THREE.AxisHelper(5);
-			this.scene.add(this.axisHelper);
+						this.gradient = new _Gradient2['default']();
+						this.scene.add(this.gradient.mesh);
 
-			this.ambient = new THREE.AmbientLight(0xffffff);
-			this.scene.add(this.ambient);
+						this.randomPlane = new _RandomPlane2['default']();
+						this.scene.add(this.randomPlane.mesh);
 
-			this.el.addEventListener(_colorzUtilsDevice2['default'].pointermove, this.onPointermove);
-			this.el.appendChild(this.renderer.domElement);
+						this.axisHelper = new THREE.AxisHelper(5);
+						this.scene.add(this.axisHelper);
 
-			this.onResize();
-		}
-	}, {
-		key: 'onResize',
-		value: function onResize() {
-			this.width = _colorzUtilsDevice2['default'].width;
-			this.height = _colorzUtilsDevice2['default'].height;
-			this.offset = (0, _colorzUtilsGetAbsoluteOffset2['default'])(this.el);
+						this.ambient = new THREE.AmbientLight(0xffffff);
+						this.scene.add(this.ambient);
 
-			// https://stackoverflow.com/questions/14614252/how-to-fit-camera-to-object
-			var fov = 2 * Math.atan(this.height / (2 * 100)) * (180 / Math.PI);
+						this.el.addEventListener(_colorzUtilsDevice2['default'].pointermove, this.onPointermove);
+						this.el.appendChild(this.renderer.domElement);
 
-			this.renderer.setSize(this.width, this.height);
-			this.ratio = this.width / this.height;
+						this.onResize();
+				}
+		}, {
+				key: 'onResize',
+				value: function onResize() {
+						this.width = _colorzUtilsDevice2['default'].width;
+						this.height = _colorzUtilsDevice2['default'].height;
+						this.offset = (0, _colorzUtilsGetAbsoluteOffset2['default'])(this.el);
 
-			this.camera.aspect = this.ratio;
-			this.camera.updateProjectionMatrix();
-		}
-	}, {
-		key: 'onPointermove',
-		value: function onPointermove(event) {
-			this.mousePos.x = event.clientX;
-			this.mousePos.y = event.clientY - (this.offset.top - _colorzUtilsDevice2['default'].scroll.top);
+						// https://stackoverflow.com/questions/14614252/how-to-fit-camera-to-object
+						var fov = 2 * Math.atan(50 / (2 * 100)) * (180 / Math.PI);
 
-			var intersection = (0, _utilsGetIntersectionMouse2['default'])(this.mousePos.x, this.mousePos.y, this.randomPlane.mesh, this.camera);
-		}
-	}, {
-		key: 'onUpdate',
-		value: function onUpdate(delta) {
-			this.renderer.render(this.scene, this.camera);
-		}
-	}]);
+						this.renderer.setSize(this.width, this.height);
+						this.ratio = this.width / this.height;
 
-	return Scene;
+						this.camera.aspect = this.ratio;
+						this.camera.fov = fov;
+						this.camera.updateProjectionMatrix();
+				}
+		}, {
+				key: 'onPointermove',
+				value: function onPointermove(event) {
+						this.mousePos.x = event.clientX;
+						this.mousePos.y = event.clientY - (this.offset.top - _colorzUtilsDevice2['default'].scroll.top);
+
+						var intersection = (0, _utilsGetIntersectionMouse2['default'])(this.mousePos.x, this.mousePos.y, this.randomPlane.mesh, this.camera);
+
+						if (!intersection.length) {
+								return;
+						}
+
+						// intersection[0].face.color.setRGB( intersection[0].face.color.r, intersection[0].face.color.r, 0 );
+						intersection[0].face.color.setRGB(1, 1, 0);
+
+						this.randomPlane.geometry.elementsNeedUpdate = true;
+				}
+		}, {
+				key: 'onUpdate',
+				value: function onUpdate(delta) {
+						this.renderer.render(this.scene, this.camera);
+				}
+		}]);
+
+		return Scene;
 })(_colorzComponent2['default']);
 
-},{"../colorz/Component":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/Component.js","../colorz/utils/device":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/utils/device.js","../colorz/utils/getAbsoluteOffset":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/utils/getAbsoluteOffset.js","../utils/getIntersectionMouse":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/utils/getIntersectionMouse.js","./Gradient":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/components/Gradient.js","./RandomPlane":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/components/RandomPlane.js","three":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/node_modules/three/build/three.js"}],"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/initialize.js":[function(require,module,exports){
+},{"../colorz/Component":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\Component.js","../colorz/utils/device":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\utils\\device.js","../colorz/utils/getAbsoluteOffset":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\utils\\getAbsoluteOffset.js","../utils/getIntersectionMouse":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\utils\\getIntersectionMouse.js","./Gradient":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\components\\Gradient.js","./RandomPlane":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\components\\RandomPlane.js","three":"D:\\Documents\\git\\magical-gradient\\node_modules\\three\\build\\three.js"}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\initialize.js":[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -45057,19 +45042,19 @@ var _componentsScene2 = _interopRequireDefault(_componentsScene);
 
 window.scenes = (0, _colorzUtilsCreator2['default'])('.js-scene', _componentsScene2['default']);
 
-},{"./colorz/utils/creator":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/utils/creator.js","./components/Scene":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/components/Scene.js"}],"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/shaders/base.vertex.glsl":[function(require,module,exports){
-module.exports = "\nuniform vec2 uResolution;\nuniform sampler2D uImage;\nuniform sampler2D uDistortionMap;\n\nvoid main(void) {\n\tvec4 mvPosition = modelViewMatrix * vec4( position, 1. );\n\n    gl_Position = projectionMatrix * mvPosition;\n}";
+},{"./colorz/utils/creator":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\utils\\creator.js","./components/Scene":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\components\\Scene.js"}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\base.vertex.glsl":[function(require,module,exports){
+module.exports = "\r\nuniform vec2 uResolution;\r\nuniform sampler2D uImage;\r\nuniform sampler2D uDistortionMap;\r\n\r\nvoid main(void) {\r\n\tvec4 mvPosition = modelViewMatrix * vec4( position, 1. );\r\n\r\n    gl_Position = projectionMatrix * mvPosition;\r\n}";
 
-},{}],"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/shaders/gradient.fragment.glsl":[function(require,module,exports){
-module.exports = "#define nbr 4\n\nuniform vec2 uResolution;\nuniform float uTime;\n\n\nvec3 gradients[nbr];\nvec3 currentGradient[nbr];\nvec2 uv;\nfloat fractal;\nvec3 rgb;\nfloat currentIndex;\nfloat step;\n\nvec3 getGradient(int id) {\n    for (int i = 0 ; i < 4 ; i++ ) {\n        if (i == id) return gradients[i];\n    }\n}\n\nvoid main( void ) {\n\tuv   = gl_FragCoord.xy/uResolution;\n\n\tstep = 1. / float( nbr );\n\t\n\tcurrentIndex = floor( uTime );\n\tfractal = fract( uTime );\n\n\tgradients[0]\t= vec3( .70, .93, .70 );   // .0\n\tgradients[1]\t= vec3(\t.68, .89, .97 );   // .33\n\tgradients[2]\t= vec3( .95, .82, .91 );   // .66\n\tgradients[3]\t= vec3( .94, .71, .81 );   // 1.\n\n\tcurrentGradient[0] = mix( getGradient( int( mod( 0. + currentIndex, 4. ) ) ), getGradient( int( mod( 1. + currentIndex, 4. ) ) ), fractal );\n\tcurrentGradient[1] = mix( getGradient( int( mod( 1. + currentIndex, 4. ) ) ), getGradient( int( mod( 2. + currentIndex, 4. ) ) ), fractal );\n\tcurrentGradient[2] = mix( getGradient( int( mod( 2. + currentIndex, 4. ) ) ), getGradient( int( mod( 3. + currentIndex, 4. ) ) ), fractal );\n\tcurrentGradient[3] = mix( getGradient( int( mod( 3. + currentIndex, 4. ) ) ), getGradient( int( mod( 0. + currentIndex, 4. ) ) ), fractal );\n\n\tfor( int i = 0 ; i < nbr ; i++ ) {\n\t\tfloat currentStep = float(i) * step;\n\n\t\tif( uv.x >= currentStep && uv.x < step * ( float( i + 1 ) ) ) {\n\t\t\tif( i == nbr - 1 ) {\n\t\t\t\trgb = vec3( mix( currentGradient[ i ], currentGradient[ 0 ], (uv.x - currentStep) * float( nbr ) ) );\n\t\t\t}\n\t\t\telse {\n\t\t\t\trgb = vec3( mix( currentGradient[ i ], currentGradient[ i+1 ], (uv.x - currentStep) * float( nbr ) ) );\n\t\t\t}\n\t\t}\n\t}\n\n\tgl_FragColor = vec4( rgb, 1. );\n}";
+},{}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\gradient.fragment.glsl":[function(require,module,exports){
+module.exports = "#define nbr 4\r\n\r\nuniform vec2 uResolution;\r\nuniform float uTime;\r\n\r\n\r\nvec3 gradients[nbr];\r\nvec3 currentGradient[nbr];\r\nvec2 uv;\r\nfloat fractal;\r\nvec3 rgb;\r\nfloat currentIndex;\r\nfloat step;\r\n\r\nvec3 getGradient(int id) {\r\n    for (int i = 0 ; i < 4 ; i++ ) {\r\n        if (i == id) return gradients[i];\r\n    }\r\n}\r\n\r\nvoid main( void ) {\r\n\tuv   = gl_FragCoord.xy/uResolution;\r\n\r\n\tstep = 1. / float( nbr );\r\n\t\r\n\tcurrentIndex = floor( uTime );\r\n\tfractal = fract( uTime );\r\n\r\n\tgradients[0]\t= vec3( .70, .93, .70 );   // .0\r\n\tgradients[1]\t= vec3(\t.68, .89, .97 );   // .33\r\n\tgradients[2]\t= vec3( .95, .82, .91 );   // .66\r\n\tgradients[3]\t= vec3( .94, .71, .81 );   // 1.\r\n\r\n\tcurrentGradient[0] = mix( getGradient( int( mod( 0. + currentIndex, 4. ) ) ), getGradient( int( mod( 1. + currentIndex, 4. ) ) ), fractal );\r\n\tcurrentGradient[1] = mix( getGradient( int( mod( 1. + currentIndex, 4. ) ) ), getGradient( int( mod( 2. + currentIndex, 4. ) ) ), fractal );\r\n\tcurrentGradient[2] = mix( getGradient( int( mod( 2. + currentIndex, 4. ) ) ), getGradient( int( mod( 3. + currentIndex, 4. ) ) ), fractal );\r\n\tcurrentGradient[3] = mix( getGradient( int( mod( 3. + currentIndex, 4. ) ) ), getGradient( int( mod( 0. + currentIndex, 4. ) ) ), fractal );\r\n\r\n\tfor( int i = 0 ; i < nbr ; i++ ) {\r\n\t\tfloat currentStep = float(i) * step;\r\n\r\n\t\tif( uv.x >= currentStep && uv.x < step * ( float( i + 1 ) ) ) {\r\n\t\t\tif( i == nbr - 1 ) {\r\n\t\t\t\trgb = vec3( mix( currentGradient[ i ], currentGradient[ 0 ], (uv.x - currentStep) * float( nbr ) ) );\r\n\t\t\t}\r\n\t\t\telse {\r\n\t\t\t\trgb = vec3( mix( currentGradient[ i ], currentGradient[ i+1 ], (uv.x - currentStep) * float( nbr ) ) );\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n\tgl_FragColor = vec4( rgb, 1. );\r\n}";
 
-},{}],"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/shaders/random.fragment.glsl":[function(require,module,exports){
-module.exports = "\nvarying vec3 vNormal;\nvarying vec3 vColor;\n\nvoid main( void ) {\n\t// float moy = ( vNormal.x + vNormal.y + vNormal.z ) / 3.;\n\tfloat moy = ( vColor.x + vColor.y + vColor.z ) / 3.;\n\tmoy -= .2;\n\n\tgl_FragColor = vec4( vec3( moy ) , 1. );\n}";
+},{}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\random.fragment.glsl":[function(require,module,exports){
+module.exports = "\r\nvarying vec3 vNormal;\r\nvarying vec3 vColor;\r\n\r\nvoid main( void ) {\r\n\tgl_FragColor = vec4( vec3( vColor.x ) , vColor.z );\r\n}";
 
-},{}],"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/shaders/random.vertex.glsl":[function(require,module,exports){
-module.exports = "\n\nvarying vec3 vNormal;\nvarying vec3 vColor;\n\nvoid main(void) {\n\tvNormal = normal;\n\tvColor = color;\n\n\tvec4 mvPosition = modelViewMatrix * vec4( position, 1. );\n\n    gl_Position = projectionMatrix * mvPosition;\n}";
+},{}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\random.vertex.glsl":[function(require,module,exports){
+module.exports = "\r\n\r\nvarying vec3 vNormal;\r\nvarying vec3 vColor;\r\n\r\nvoid main(void) {\r\n\tvColor = color;\r\n\r\n\tvec4 mvPosition = modelViewMatrix * vec4( position, 1. );\r\n\r\n    gl_Position = projectionMatrix * mvPosition;\r\n}";
 
-},{}],"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/utils/getIntersectionMouse.js":[function(require,module,exports){
+},{}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\utils\\getIntersectionMouse.js":[function(require,module,exports){
 "use strict";
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -45099,6 +45084,6 @@ function getIntersectionMouse(x, y, mesh, camera) {
 
 module.exports = getIntersectionMouse;
 
-},{"../colorz/utils/device":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/colorz/utils/device.js","three":"/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/node_modules/three/build/three.js"}]},{},["/Users/tommy.cornilleau/Documents/DIVERS/magical-gradient/src/scripts/initialize.js"])
+},{"../colorz/utils/device":"D:\\Documents\\git\\magical-gradient\\src\\scripts\\colorz\\utils\\device.js","three":"D:\\Documents\\git\\magical-gradient\\node_modules\\three\\build\\three.js"}]},{},["D:\\Documents\\git\\magical-gradient\\src\\scripts\\initialize.js"])
 
 //# sourceMappingURL=bundle.js.map
