@@ -10,10 +10,11 @@ module.exports = class RandomPlane extends Component {
 			uTime:    		{ type: 'f', 	value: 0 }
 		};
 
-		this.geometry 	= this.createGeometry();
-		// this.attributes = this.createAttributes();
+		this.geometry 	= this.createGeometry( 100, 1500, 100, 50 );
+		this.attributes = this.createAttributes();
 		this.material 	= new THREE.ShaderMaterial( {
 			uniforms: this.uniforms,
+			attributes: this.attributes,
 			transparent: true,
 			vertexShader: require('../shaders/random.vertex.glsl'),
 			fragmentShader: require('../shaders/random.fragment.glsl'),
@@ -24,36 +25,24 @@ module.exports = class RandomPlane extends Component {
 		this.mesh = new THREE.Mesh( this.geometry, this.material );
 	}
 
-	onReady() {
-	}
-
-	onResize() {
-		// this.uniforms.uResolution.value = new THREE.Vector2( device.width, device.height );
-	}
-
-	onUpdate( delta ) {
-		// this.material.uniforms.uTime.value += delta * .001;
-	}
-
 	createGeometry() {
-		// var geometry = new THREE.PlaneGeometry( 100, 50, 50, 50 );
-		var geometry = new THREE.PlaneBufferGeometry( 100, 50, 50, 50 );
+		var geometry = new THREE.PlaneGeometry( 100, 100, 50, 50 );
 
-		for( let i = 0 ; i < geometry.attributes.position.count ; i+=3 ) {
-			geometry.attributes.position[i]  += Math.random() * 1.5 - .75;
-			geometry.attributes.position[i+1] += Math.random() * 2 - 1;
-			geometry.attributes.position[i+2] += Math.random() * 1.5;
+		for( let i = 0 ; i < geometry.vertices.length ; i++ ) {
+			let vertex = geometry.vertices[i];
+
+			vertex.x += Math.random() * 1.5;
+			vertex.y += Math.random() * 2;
+			vertex.z += Math.random() * 1.5;
 		}
 
-		geometry.attributes.position.needsUpdate = true;
-		geometry.computeVertexNormals();
-		console.log('geometry', geometry);
+	    geometry.computeVertexNormals();
 
-		// for( let i = 0 ; i < geometry.faces.length ; i++ ) {
-		// 	let face = geometry.faces[i];
+		for( let i = 0 ; i < geometry.faces.length ; i++ ) {
+			let face = geometry.faces[i];
 
-		// 	face.color.setRGB( face.vertexNormals[0].x, face.vertexNormals[0].y, face.vertexNormals[0].z );
-		// }
+			face.color.setRGB( face.vertexNormals[0].x, face.vertexNormals[0].y, face.vertexNormals[0].z );
+		}
 
 		return geometry;
 	}
