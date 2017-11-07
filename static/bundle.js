@@ -44863,13 +44863,13 @@ module.exports = (function (_Component) {
 	}, {
 		key: 'createGeometry',
 		value: function createGeometry() {
-			var geometry = new THREE.PlaneGeometry(100, 50, 50, 30);
+			var geometry = new THREE.PlaneGeometry(100, 50, 100, 60);
 
 			for (var i = 0; i < geometry.vertices.length; i++) {
 				var vertex = geometry.vertices[i];
 
-				vertex.x += Math.random() * 1.5 - .75;
-				vertex.y += Math.random() * 2 - 1;
+				vertex.x += Math.random() * 1 - .5;
+				vertex.y += Math.random() * 1 - .5;
 				vertex.z += Math.random() * 1.5;
 			}
 
@@ -44976,7 +44976,7 @@ module.exports = (function (_Component) {
 						this.scene.add(this.randomPlane.mesh);
 
 						this.axisHelper = new THREE.AxisHelper(5);
-						this.scene.add(this.axisHelper);
+						// this.scene.add( this.axisHelper );
 
 						this.ambient = new THREE.AmbientLight(0xffffff);
 						this.scene.add(this.ambient);
@@ -45022,8 +45022,8 @@ module.exports = (function (_Component) {
 		}, {
 				key: 'onUpdate',
 				value: function onUpdate(delta) {
-						this.currentPos.x += (this.pos.x - this.currentPos.x) * .05;
-						this.currentPos.y += (this.pos.y - this.currentPos.y) * .05;
+						this.currentPos.x += (this.pos.x - this.currentPos.x) * .02;
+						this.currentPos.y += (this.pos.y - this.currentPos.y) * .02;
 
 						console.log(this.currentPos);
 

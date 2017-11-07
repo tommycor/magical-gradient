@@ -40,7 +40,7 @@ module.exports = class Scene extends Component {
 		this.scene.add( this.randomPlane.mesh );
 
 		this.axisHelper =  new THREE.AxisHelper( 5 );
-		this.scene.add( this.axisHelper );
+		// this.scene.add( this.axisHelper );
 
 		this.ambient = new THREE.AmbientLight( 0xffffff );
 		this.scene.add( this.ambient );
@@ -81,8 +81,8 @@ module.exports = class Scene extends Component {
 	}
 
 	onUpdate( delta ) {
-		this.currentPos.x += ( this.pos.x - this.currentPos.x ) * .05;
-		this.currentPos.y += ( this.pos.y - this.currentPos.y ) * .05;
+		this.currentPos.x += ( this.pos.x - this.currentPos.x ) * .02;
+		this.currentPos.y += ( this.pos.y - this.currentPos.y ) * .02;
 
 		console.log( this.currentPos )
 
