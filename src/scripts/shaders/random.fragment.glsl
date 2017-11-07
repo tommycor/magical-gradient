@@ -1,4 +1,6 @@
 
+uniform vec2 uMouse;
+
 varying vec3 vNormal;
 varying vec3 vColor;
 

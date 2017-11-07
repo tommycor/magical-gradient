@@ -7,7 +7,8 @@ module.exports = class RandomPlane extends Component {
 	onInit() {
 		this.uniforms = {
 			uResolution:    { type: 'v2', 	value: new THREE.Vector2( 0, 0 ) },
-			uTime:    		{ type: 'f', 	value: 0 }
+			uTime:    		{ type: 'f', 	value: 0 },
+			uMouse:    		{ type: 'v2', 	value: new THREE.Vector2( 0, 0 ) },
 		};
 
 		this.geometry 	= this.createGeometry();

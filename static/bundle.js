@@ -44844,7 +44844,8 @@ module.exports = (function (_Component) {
 		value: function onInit() {
 			this.uniforms = {
 				uResolution: { type: 'v2', value: new THREE.Vector2(0, 0) },
-				uTime: { type: 'f', value: 0 }
+				uTime: { type: 'f', value: 0 },
+				uMouse: { type: 'v2', value: new THREE.Vector2(0, 0) }
 			};
 
 			this.geometry = this.createGeometry();
@@ -44949,6 +44950,8 @@ module.exports = (function (_Component) {
 
 						this.el = el;
 						this.mousePos = new THREE.Vector2(0, 0);
+						this.pos = new THREE.Vector2(0, 0);
+						this.currentPos = new THREE.Vector2(0, 0);
 				}
 		}, {
 				key: 'onReady',
@@ -45012,14 +45015,21 @@ module.exports = (function (_Component) {
 								return;
 						}
 
-						// intersection[0].face.color.setRGB( intersection[0].face.color.r, intersection[0].face.color.r, 0 );
-						intersection[0].face.color.setRGB(1, 1, 0);
-
-						this.randomPlane.geometry.elementsNeedUpdate = true;
+						this.pos = intersection[0].point;
+						// this.pox.x *= -1;
+						// this.pox.y *= -1;
 				}
 		}, {
 				key: 'onUpdate',
 				value: function onUpdate(delta) {
+						this.currentPos.x += (this.pos.x - this.currentPos.x) * .05;
+						this.currentPos.y += (this.pos.y - this.currentPos.y) * .05;
+
+						console.log(this.currentPos);
+
+						this.randomPlane.material.uniforms.uMouse.value = new THREE.Vector2(this.currentPos.x, this.currentPos.y);
+						this.randomPlane.geometry.elementsNeedUpdate = true;
+
 						this.renderer.render(this.scene, this.camera);
 				}
 		}]);
@@ -45049,10 +45059,10 @@ module.exports = "\r\nuniform vec2 uResolution;\r\nuniform sampler2D uImage;\r\n
 module.exports = "#define nbr 4\r\n\r\nuniform vec2 uResolution;\r\nuniform float uTime;\r\n\r\n\r\nvec3 gradients[nbr];\r\nvec3 currentGradient[nbr];\r\nvec2 uv;\r\nfloat fractal;\r\nvec3 rgb;\r\nfloat currentIndex;\r\nfloat step;\r\n\r\nvec3 getGradient(int id) {\r\n    for (int i = 0 ; i < 4 ; i++ ) {\r\n        if (i == id) return gradients[i];\r\n    }\r\n}\r\n\r\nvoid main( void ) {\r\n\tuv   = gl_FragCoord.xy/uResolution;\r\n\r\n\tstep = 1. / float( nbr );\r\n\t\r\n\tcurrentIndex = floor( uTime );\r\n\tfractal = fract( uTime );\r\n\r\n\tgradients[0]\t= vec3( .70, .93, .70 );   // .0\r\n\tgradients[1]\t= vec3(\t.68, .89, .97 );   // .33\r\n\tgradients[2]\t= vec3( .95, .82, .91 );   // .66\r\n\tgradients[3]\t= vec3( .94, .71, .81 );   // 1.\r\n\r\n\tcurrentGradient[0] = mix( getGradient( int( mod( 0. + currentIndex, 4. ) ) ), getGradient( int( mod( 1. + currentIndex, 4. ) ) ), fractal );\r\n\tcurrentGradient[1] = mix( getGradient( int( mod( 1. + currentIndex, 4. ) ) ), getGradient( int( mod( 2. + currentIndex, 4. ) ) ), fractal );\r\n\tcurrentGradient[2] = mix( getGradient( int( mod( 2. + currentIndex, 4. ) ) ), getGradient( int( mod( 3. + currentIndex, 4. ) ) ), fractal );\r\n\tcurrentGradient[3] = mix( getGradient( int( mod( 3. + currentIndex, 4. ) ) ), getGradient( int( mod( 0. + currentIndex, 4. ) ) ), fractal );\r\n\r\n\tfor( int i = 0 ; i < nbr ; i++ ) {\r\n\t\tfloat currentStep = float(i) * step;\r\n\r\n\t\tif( uv.x >= currentStep && uv.x < step * ( float( i + 1 ) ) ) {\r\n\t\t\tif( i == nbr - 1 ) {\r\n\t\t\t\trgb = vec3( mix( currentGradient[ i ], currentGradient[ 0 ], (uv.x - currentStep) * float( nbr ) ) );\r\n\t\t\t}\r\n\t\t\telse {\r\n\t\t\t\trgb = vec3( mix( currentGradient[ i ], currentGradient[ i+1 ], (uv.x - currentStep) * float( nbr ) ) );\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n\tgl_FragColor = vec4( rgb, 1. );\r\n}";
 
 },{}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\random.fragment.glsl":[function(require,module,exports){
-module.exports = "\r\nvarying vec3 vNormal;\r\nvarying vec3 vColor;\r\n\r\nvoid main( void ) {\r\n\tgl_FragColor = vec4( vec3( vColor.x ) , vColor.z );\r\n}";
+module.exports = "\r\nuniform vec2 uMouse;\r\n\r\nvarying vec3 vNormal;\r\nvarying vec3 vColor;\r\n\r\nvoid main( void ) {\r\n\tgl_FragColor = vec4( vec3( vColor.x ) , vColor.z );\r\n}";
 
 },{}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\shaders\\random.vertex.glsl":[function(require,module,exports){
-module.exports = "\r\n\r\nvarying vec3 vNormal;\r\nvarying vec3 vColor;\r\n\r\nvoid main(void) {\r\n\tvColor = color;\r\n\r\n\tvec4 mvPosition = modelViewMatrix * vec4( position, 1. );\r\n\r\n    gl_Position = projectionMatrix * mvPosition;\r\n}";
+module.exports = "#define PI 3.1415926535897932384626433832795\r\n#define I_PI_3 0.1061032953945969\r\n\r\nuniform vec2 uMouse;\r\n\r\nvarying vec3 vNormal;\r\nvarying vec3 vColor;\r\n\r\nvoid main(void) {\r\n\tvColor = color;\r\n\r\n\tvec3 newPosition \t= position;\r\n\tfloat dist \t\t\t= distance( position.xy, uMouse );\r\n\r\n\tif( dist < 15. ) {\r\n\t\tdist += 15.;\r\n\t\tnewPosition.z -= ( sin(dist * I_PI_3) * .5 + .5 )  * 1.5;\r\n\t\t// newPosition.z -= dist * sin(dist * I_PI_3) * .9;\r\n\t}\r\n\r\n\tvec4 mvPosition = modelViewMatrix * vec4( newPosition, 1. );\r\n\r\n    gl_Position = projectionMatrix * mvPosition;\r\n}";
 
 },{}],"D:\\Documents\\git\\magical-gradient\\src\\scripts\\utils\\getIntersectionMouse.js":[function(require,module,exports){
 "use strict";

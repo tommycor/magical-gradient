@@ -11,10 +11,12 @@ import RandomPlane 			from'./RandomPlane';
 
 module.exports = class Scene extends Component {
 	onInit( el ) {
-		this.onPointermove 			= this.onPointermove.bind( this );
+		this.onPointermove 		= this.onPointermove.bind( this );
 
-		this.el 		= el;
-		this.mousePos 	= new THREE.Vector2( 0, 0 );
+		this.el 				= el;
+		this.mousePos 			= new THREE.Vector2( 0, 0 );
+		this.pos 				= new THREE.Vector2( 0, 0 );
+		this.currentPos 		= new THREE.Vector2( 0, 0 );
 	}
 
 	onReady() {
@@ -73,13 +75,20 @@ module.exports = class Scene extends Component {
 
 		if( !intersection.length ) { return; }
 
-		// intersection[0].face.color.setRGB( intersection[0].face.color.r, intersection[0].face.color.r, 0 );
-		intersection[0].face.color.setRGB( 1, 1, 0 );
-
-		this.randomPlane.geometry.elementsNeedUpdate = true;
+		this.pos = intersection[0].point;
+		// this.pox.x *= -1;
+		// this.pox.y *= -1;
 	}
 
 	onUpdate( delta ) {
+		this.currentPos.x += ( this.pos.x - this.currentPos.x ) * .05;
+		this.currentPos.y += ( this.pos.y - this.currentPos.y ) * .05;
+
+		console.log( this.currentPos )
+
+		this.randomPlane.material.uniforms.uMouse.value = new THREE.Vector2( this.currentPos.x, this.currentPos.y )
+		this.randomPlane.geometry.elementsNeedUpdate = true;
+
 		this.renderer.render(this.scene, this.camera);
 	}
 }
